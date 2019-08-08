@@ -11,121 +11,6 @@ export ZSH="/home/sebastian/.oh-my-zsh"
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE='nerdfont-complete'
 
-# Please only use this battery segment if you have material icons in your nerd font (or font)
-# Otherwise, use the font awesome one in "User Segments"
-prompt_zsh_battery_level() {
-  local percentage1=`acpi | grep -o '[0-9]*%'`
-  local percentage=`echo "${percentage1//\%}"`
-
-  local color='%F{red}'
-  local symbol="\uf00d"
-  acpi | grep "Discharging" > /dev/null
-  if [ $? -eq 0 ]; then
-    local charging="false";
-  else
-    local charging="true";
-  fi
-  if [ $percentage -le 20 ]
-  then symbol='\uf579' ; color='%F{red}' ;
-    #10%
-  elif [ $percentage -gt 19 ] && [ $percentage -le 30 ]
-  then symbol="\uf57a" ; color='%F{red}' ;
-    #20%
-  elif [ $percentage -gt 29 ] && [ $percentage -le 40 ]
-  then symbol="\uf57b" ; color='%F{yellow}' ;
-    #35%
-  elif [ $percentage -gt 39 ] && [ $percentage -le 50 ]
-  then symbol="\uf57c" ; color='%F{yellow}' ;
-    #45%
-  elif [ $percentage -gt 49 ] && [ $percentage -le 60 ]
-  then symbol="\uf57d" ; color='%F{blue}' ;
-    #55%
-  elif [ $percentage -gt 59 ] && [ $percentage -le 70 ]
-  then symbol="\uf57e" ; color='%F{blue}' ;
-    #65%
-  elif [ $percentage -gt 69 ] && [ $percentage -le 80 ]
-  then symbol="\uf57f" ; color='%F{blue}' ;
-    #75%
-  elif [ $percentage -gt 79 ] && [ $percentage -le 90 ]
-  then symbol="\uf580" ; color='%F{blue}' ;
-    #85%
-  elif [ $percentage -gt 89 ] && [ $percentage -le 99 ]
-  then symbol="\uf581" ; color='%F{blue}' ;
-    #85%
-  elif [ $percentage -gt 98 ]
-  then symbol="\uf578" ; color='%F{green}' ;
-    #100%
-  fi
-  if [ $charging = "true" ];
-  then color='%F{green}'; if [ $percentage -gt 98 ]; then symbol='\uf584'; fi
-  fi
-  echo -n "%F{white}\uE0B3 %{$color%}$symbol %F{white}$percentage%% " ;
-}
-
-prompt_zsh_internet_signal(){
-  local symbol="\uf7ba"
-  local strength=`iwconfig wlo1 | grep -i "link quality" | grep -o "[0-9]*/[0-9]*"`
-
-  echo -n "%F{white}\uE0B3 $symbol $strength"
-}
-
-
-prompt_codetalk() {
-    local content='\uF17C c{}deTalk'
-    $1_prompt_segment "$0" "$2" "black" "white" "$content" "#"
-}
-
-
-
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_beginning"
-POWERLEVEL9K_RVM_BACKGROUND="black"
-POWERLEVEL9K_RVM_FOREGROUND="249"
-POWERLEVEL9K_RVM_VISUAL_IDENTIFIER_COLOR="red"
-POWERLEVEL9K_TIME_BACKGROUND="black"
-POWERLEVEL9K_TIME_FOREGROUND="white"
-POWERLEVEL9K_TIME_FORMAT="\UF43A %D{%I:%M  \UF133  %m.%d.%y}"
-POWERLEVEL9K_RVM_BACKGROUND="black"
-POWERLEVEL9K_RVM_FOREGROUND="249"
-POWERLEVEL9K_RVM_VISUAL_IDENTIFIER_COLOR="red"
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND='black'
-POWERLEVEL9K_VCS_CLEAN_BACKGROUND='green'
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='black'
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='orange'
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='black'
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
-POWERLEVEL9K_VCS_HIDE_TAGS='false'
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='black'
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='white'
-POWERLEVEL9K_FOLDER_ICON=''
-POWERLEVEL9K_STATUS_OK_IN_NON_VERBOSE=true
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
-POWERLEVEL9K_VCS_UNTRACKED_ICON='\u25CF'
-POWERLEVEL9K_VCS_UNSTAGED_ICON='\u00b1'
-POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON='\u2193'
-POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON='\u2191'
-POWERLEVEL9K_VCS_COMMIT_ICON="\uf417"
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{blue}\u256D\u2500%f"
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460%f "
-POWERLEVEL9K_CUSTOM_BATTERY_STATUS="prompt_zsh_battery_level"
-POWERLEVEL9K_CUSTOM_BATTERY_STATUS_BACKGROUND='blue'
-POWERLEVEL9K_CUSTOM_BATTERY_STATUS_BACKGROUND='black'
-#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(codetalk context custom_internet_signal  ssh root_indicator dir dir_writable vcs)
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context custom_internet_signal  ssh root_indicator dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time  status  custom_battery_status_joined zsh_internet_signal time)
-HIST_STAMPS="dd/mm/yyyy"
-DISABLE_UPDATE_PROMPT=true
-POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='black'
-POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='purple'
-
-POWERLINE9K_CODETALK_DEFAULT_BACKGROUND='black'
-POWERLINE9K_CODETALK_DEFAULT_FOREGROUND='red'
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -216,4 +101,84 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+
+POWERLEVEL9K_CUSTOM_WIFI_SIGNAL="zsh_wifi_signal"
+POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_BACKGROUND="white"
+POWERLEVEL9K_CUSTOM_WIFI_SIGNAL_FOREGROUND="black"
+
+zsh_wifi_signal(){
+        local device=$(nmcli -g active,ssid,rate dev wifi | grep yes)
+        local wifi=$(nmcli dev | grep wlo1 | awk '{print $3}')
+
+        if [ "$wifi" = "disconnected" ]; then
+                local color='%F{black}'
+                echo -n "%{$color%}Wifi Off"
+        else
+                local ssid=$(echo $device | cut -d: -f2)
+                local speed=$(echo $device | cut -d: -f3 | awk '{print $1}')
+                local color='%F{black}'
+
+                [[ $speed -gt 100 ]] && color='%F{black}'
+                [[ $speed -lt 50 ]] && color='%F{red}'
+
+                echo -n "%{$color%}$speed Mbps \uf1eb%{%f%}" # removed char not in my PowerLine font
+        fi
+}
+
+POWERLEVEL9K_CONTEXT_TEMPLATE='%n'
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='white'
+POWERLEVEL9K_BATTERY_CHARGING='yellow'
+POWERLEVEL9K_BATTERY_CHARGED='green'
+POWERLEVEL9K_BATTERY_DISCONNECTED='$DEFAULT_COLOR'
+POWERLEVEL9K_BATTERY_LOW_THRESHOLD='10'
+POWERLEVEL9K_BATTERY_LOW_COLOR='red'
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
+#POWERLEVEL9K_BATTERY_STAGES=($'\u2581 ' $'\u2582 ' $'\u2583 ' $'\u2584 ' $'\u2585 ' $'\u2586 ' $'\u2587 ' $'\u2588 ')
+POWERLEVEL9K_BATTERY_ICON='\uf1e6 '
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="❱ "
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF460%F{073}\uF460%F{109}\uF460%f "
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
+POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context battery dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time dir_writable ip custom_wifi_signal ram load background_jobs)
+
+#POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+
+POWERLEVEL9K_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %d/%m/%y}"
+POWERLEVEL9K_TIME_BACKGROUND='white'
+POWERLEVEL9K_RAM_BACKGROUND='yellow'
+POWERLEVEL9K_LOAD_CRITICAL_BACKGROUND="white"
+POWERLEVEL9K_LOAD_WARNING_BACKGROUND="white"
+POWERLEVEL9K_LOAD_NORMAL_BACKGROUND="white"
+POWERLEVEL9K_LOAD_CRITICAL_FOREGROUND="red"
+POWERLEVEL9K_LOAD_WARNING_FOREGROUND="yellow"
+POWERLEVEL9K_LOAD_NORMAL_FOREGROUND="black"
+POWERLEVEL9K_LOAD_CRITICAL_VISUAL_IDENTIFIER_COLOR="red"
+POWERLEVEL9K_LOAD_WARNING_VISUAL_IDENTIFIER_COLOR="yellow"
+POWERLEVEL9K_LOAD_NORMAL_VISUAL_IDENTIFIER_COLOR="green"
+POWERLEVEL9K_HOME_ICON=''
+POWERLEVEL9K_HOME_SUB_ICON=''
+POWERLEVEL9K_FOLDER_ICON=''
+POWERLEVEL9K_STATUS_VERBOSE=true
+POWERLEVEL9K_STATUS_CROSS=true
+
+# Alias
+alias cls="clear"
+alias down="cd ~/Downloads"
+alias ..="cd .."
+alias ....="cd ../.."
+
+alias look="sudo find . -name"
+alias search="sudo grep --color -rnw ./ -e "
+alias ports="sudo lsof -PiTCP -sTCP:LISTEN"
+
+alias xclip="xclip -selection c"
+
+alias speedtest="wget -O /dev/null cachefly.cachefly.net/100mb.test"
+export LSCOLORS=""
+
+export PROMPT_COMMAND="history -a; history -n"
