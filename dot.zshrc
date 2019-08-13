@@ -69,10 +69,7 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-	git
-	history
-)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -166,19 +163,3 @@ POWERLEVEL9K_FOLDER_ICON=''
 POWERLEVEL9K_STATUS_VERBOSE=true
 POWERLEVEL9K_STATUS_CROSS=true
 
-# Alias
-alias cls="clear"
-alias down="cd ~/Downloads"
-alias ..="cd .."
-alias ....="cd ../.."
-
-alias look="sudo find . -name"
-alias search="sudo grep --color -rnw ./ -e "
-alias ports="sudo lsof -PiTCP -sTCP:LISTEN"
-
-alias xclip="xclip -selection c"
-
-alias speedtest="wget -O /dev/null cachefly.cachefly.net/100mb.test"
-export LSCOLORS=""
-
-export PROMPT_COMMAND="history -a; history -n"
