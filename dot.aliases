@@ -1,0 +1,26 @@
+#
+# ~/.bashrc
+#
+
+alias cp="cp -i"                          # confirm before overwriting something
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
+
+### Custom aliases ###
+
+alias ll='ls -al'
+
+alias gss='git status'
+alias gaa='git add .'
+alias gcm='git commit'
+alias gma='git commit -a'
+alias gpsh='git push'
+alias gpll='git pull'
+alias gch='git checkout'
+alias gba='git branch -a'
+
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
