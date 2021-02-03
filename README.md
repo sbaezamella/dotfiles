@@ -1,2 +1,3 @@
 # dotfiles
-Personal dotfiles
+
+## Personal dotfiles for Pop!\_OS
